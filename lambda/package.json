@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts"
+  },
   "devDependencies": {
     "@types/aws-serverless-express": "^3.3.3",
     "@types/cors": "^2.8.6",

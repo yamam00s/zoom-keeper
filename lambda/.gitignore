@@ -31,3 +31,6 @@ yarn-error.log*
 
 # API key
 .zoomKey
+
+# ID
+userId.ts
