@@ -33,4 +33,4 @@ yarn-error.log*
 .zoomKey
 
 # ID
-userId.ts
+token.ts
