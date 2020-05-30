@@ -1,13 +1,13 @@
 import fetch, { RequestInit } from 'node-fetch'
-import { userId, jwtToken } from './token'
+import { userId } from './token'
 import { CreateMeetingBody } from './types'
 
-export const createMeeting = async () => {
+export const postMeeting = async (jwtToken: string) => {
   const createMeetingBody: CreateMeetingBody = {
-    topic: "string",
+    topic: 'string',
     type: 2,
-    start_time: "2020-04-27T15:30:30",
-    timezone: "Asia/Tokyo",
+    start_time: '2020-04-27T15:30:30',
+    timezone: 'Asia/Tokyo',
     settings: {
       use_pmi: false
     }
@@ -21,6 +21,8 @@ export const createMeeting = async () => {
       authorization: `Bearer ${jwtToken}`
     },
   }
-  await fetch(`https://api.zoom.us/v2/users/${userId}/meetings`, options)
+  const result = await fetch(`https://api.zoom.us/v2/users/${userId}/meetings`, options)
+
+  return result
 }
 
