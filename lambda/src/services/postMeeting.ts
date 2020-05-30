@@ -2,14 +2,13 @@ import fetch, { RequestInit } from 'node-fetch'
 import { userId } from './token'
 import { CreateMeetingBody } from './types'
 
-export const postMeeting = async (jwtToken: string) => {
+const postMeeting = async (jwtToken: string) => {
   const createMeetingBody: CreateMeetingBody = {
     topic: 'string',
-    type: 2,
-    start_time: '2020-04-27T15:30:30',
+    type: 1,
     timezone: 'Asia/Tokyo',
     settings: {
-      use_pmi: false
+      use_pmi: true
     }
   }
   const options: RequestInit = {
@@ -26,3 +25,4 @@ export const postMeeting = async (jwtToken: string) => {
   return result
 }
 
+export default postMeeting
