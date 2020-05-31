@@ -1,44 +1,20 @@
-// import express from "express"
-import fetch,  { RequestInit } from 'node-fetch'
-// import cors from 'cors'
-import { userId, jwtToken } from './token'
+import awsServerlessExpressMiddleware from 'aws-serverless-express/middleware'
+import express from "express"
+import cors from 'cors'
+import createToken from './services/createToken'
+import postMeeting from './services/postMeeting'
+import { Meetings } from './types/response'
 
-// const app = express();
+const app = express();
 
-// app.use(cors())
+app.use(cors())
+app.get('/', async (req, res) => {
+  const token = createToken()
+  const result = await postMeeting(token)
+  const responseJson: Meetings = await result.json()
 
-// app.get('/', async (req, res) => {
-//   const options = {
-//     method: 'POST',
-//     body:    JSON.stringify(body),
-//     headers: { 'Content-Type': 'application/json' },
-//   }
-//   fetch(`https://api.zoom.us/v2/users/${userId}/meetings`)
-//   res.send('Hello World!')
-// })
+  res.send(responseJson)
+})
 
-// app.listen(3000, () => console.log('Example app listening on port 3000!'))
-
-const localTest = async () => {
-  const createMeetingBody = {
-    topic: "string",
-    type: "2",
-    start_time: "2020-04-27T15:30:30",
-    timezone: "Asia/Tokyo",
-    setting: {
-      "use_pmi": false
-    }
-  }
-  const options: RequestInit = {
-    body: JSON.stringify(createMeetingBody),
-    method: 'POST',
-    headers: {
-      'User-Agent': 'Zoom-Jwt-Request',
-      'content-type': 'application/json',
-      authorization: `Bearer ${jwtToken}`
-    },
-  }
-  await fetch(`https://api.zoom.us/v2/users/${userId}/meetings`, options)
-}
-
-localTest()
+app.use(awsServerlessExpressMiddleware.eventContext())
+module.exports = app
