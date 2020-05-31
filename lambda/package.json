@@ -19,6 +19,14 @@
     "delete-stack": "aws cloudformation delete-stack --stack-name $npm_package_config_cloudFormationStackName --region $npm_package_config_region",
     "setup": "npm install && (aws s3api get-bucket-location --bucket $npm_package_config_s3BucketName --region $npm_package_config_region || npm run create-bucket) && npm run package-deploy"
   },
+  "config": {
+    "s3BucketName": "zoom-keeper",
+    "region": "ap-northeast-1",
+    "cloudFormationStackName": "ExpressServerlessApiStack",
+    "functionName": "ZoomKeeper",
+    "accountId": "506974868120",
+    "profile": "default"
+  },
   "devDependencies": {
     "@types/aws-serverless-express": "^3.3.3",
     "@types/cors": "^2.8.6",
