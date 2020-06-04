@@ -3,10 +3,11 @@ import axios from 'axios'
 import { Meetings } from 'types/response'
 import Button from "components/Button"
 
-const CreateMeeting: FC = () => {
+const CreateMeeting: FC<{setResponse: React.Dispatch<React.SetStateAction<Meetings>> }> = ({ setResponse}) => {
 
-  const createMeeting: () => Promise<Meetings> = async() => {
-    return axios.get('https://1is96ypi36.execute-api.ap-northeast-1.amazonaws.com/prod')
+  const createMeeting = async() => {
+    const result = await axios.get<Meetings>('https://1is96ypi36.execute-api.ap-northeast-1.amazonaws.com/prod')
+    await setResponse(result.data)
   }
 
   return (
