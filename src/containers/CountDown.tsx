@@ -14,7 +14,9 @@ const CountDown: FC<{countDownProps: CountDownProps}> = ({ countDownProps }) => 
   const { hour, min, sec } = secToHour(timeLeft)
 
   useEffect(() => {
-
+    if (timeLeft % breakTime === 0) {
+      setIsBreak(true)
+    }
   }, [timeLeft])
 
   return <p>{`${hour}:${min}:${sec}`}</p>
