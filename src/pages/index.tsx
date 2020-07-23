@@ -9,11 +9,12 @@ const Home: FC = () => {
   const [isNotification, setIsNotification] = useState(false)
 
   const countDown = {
-    // 2時間
-    totalTime: 7200,
-    // 37分（3分前）
-    breakTime: 2280,
-    setIsBreak
+    // 40分
+    totalTime: 2400,
+    // 37分後
+    breakTime: 180,
+    setIsBreak,
+    meeting
   }
 
   const createMeeting = {
