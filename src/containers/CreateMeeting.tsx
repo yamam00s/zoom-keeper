@@ -12,7 +12,7 @@ const CreateMeeting: FC<{createMeetingProps: CreateMeetingProps }> = ({ createMe
   const { setMeeting, isNotification } = createMeetingProps
   const createMeeting = async() => {
     try {
-      const result = await axios.get<Meetings>('https://1is96ypi36.execute-api.ap-northeast-1.amazonaws.com/prod')
+      const result = await axios.get<Meetings>('https://q2puv6i767.execute-api.ap-northeast-1.amazonaws.com/prod')
       // CountDownコンポーネントを再描画させる
       setMeeting(null)
       await setMeeting(result.data)
