@@ -5,9 +5,13 @@ import createToken from './services/createToken'
 import postMeeting from './services/postMeeting'
 import { Meetings } from './types/response'
 
+const corsOptions = {
+  origin: 'https://zoom-keeper-qg5ku94i5.vercel.app',
+}
+
 const app = express();
 
-app.use(cors())
+app.use(cors(corsOptions))
 app.get('/', async (req, res) => {
   const token = createToken()
   const result = await postMeeting(token)
