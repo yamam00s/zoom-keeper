@@ -39,7 +39,11 @@ const Home: FC = () => {
     <>
       {meeting &&  <CountDown countDownProps={countDown} />}
       <CreateMeeting createMeetingProps={createMeeting} />
-      {meeting && (<a href="`${meeting.join_url}`">{meeting.join_url}</a>)}
+      {meeting && (
+        <div className="link-button">
+          <a href={meeting.join_url} target="_blank">{meeting.join_url}</a>
+        </div>
+      )}
     </>
   )
 }
